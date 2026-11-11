@@ -1,5 +1,25 @@
 # @redocly/respect-core
 
+## 2.78.0
+
+### Minor Changes
+
+- Added a warning to the `respect` command for workflow inputs that don't match the workflow's `inputs` schema.
+  The workflow still runs with the inputs as given.
+
+### Patch Changes
+
+- Fixed an issue where a Respect step that uses an AsyncAPI source description failed with `Unknown description name`.
+  The step now reports that Respect does not support AsyncAPI yet and links the Redocly CLI repository to upvote or open an issue.
+- Fixed an issue where `respect` skipped the content type check for a response described only by the `default` response.
+- Fixed an issue where `respect` failed to find an operation by `operationId` when an empty path item or an empty operation came before it in the OpenAPI description.
+- Fixed an issue where `respect` failed when a workflow `inputs` schema had a `default` at its top level or at the top of `env`, or used a keyword that JSON Schema does not define, such as `example` or an `x-` extension.
+- Fixed an issue where `respect` did not mask `format: password` fields of a request body or a response described under a wildcard media type, such as `*/*` or `application/*`.
+- Fixed an issue where `respect` checked a response against the first matching wildcard media type instead of the most specific one.
+  `application/*` wins over `*/*` regardless of their order.
+- Fixed an issue where `respect` failed the status code check and skipped the content type and schema checks for a response described with a status code range, such as `2XX`.
+- Updated @redocly/openapi-core to v2.78.0.
+
 ## 2.77.0
 
 ### Patch Changes
